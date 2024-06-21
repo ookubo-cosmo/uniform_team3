@@ -126,7 +126,7 @@ public class OrderDAO {
 		
 		//検索用SQL文
 		//注文所法の全情報を取得する
-		String sql = "SELECT * FROM orderinfo WHERE orderid=";
+		String sql = "SELECT * FROM orderinfo WHERE orderid=" + orderid + ";";
 		
 		try {
 			//getConnection()メソッドを利用してConnectionオブジェクトを生成
@@ -142,7 +142,7 @@ public class OrderDAO {
 			if(rs.next()) {
 				order.setOrderid(rs.getInt("orderid"));
 				order.setName(rs.getString("name"));
-				order.setAddress(rs.getString("adress"));
+				order.setAddress(rs.getString("address"));
 				order.setEmail(rs.getString("email"));
 				order.setItemid(rs.getInt("itemid"));
 				order.setQuantity(rs.getInt("quantity"));
