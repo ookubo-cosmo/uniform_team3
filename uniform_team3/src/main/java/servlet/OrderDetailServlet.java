@@ -48,7 +48,6 @@ public class OrderDetailServlet extends HttpServlet {
 				request.setAttribute("cmd", cmd);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			} else {
-
 				request.getRequestDispatcher("/view/orderdetail").forward(request, response);
 			}
 		}

@@ -1,11 +1,10 @@
 <!-- 
-プログラム名：		書籍管理プログラムWeb版 Ver1.0
-プログラムの説明：	書籍の書籍番号、タイトル、価格を管理するプログラム
-					主な機能は、書籍の登録、削除、変更と一覧の表示
-					
-画面の概要:			書籍情報一覧を表示し、それらに対する操作を受け付ける
+プログラム名		:ユニフォーム受注システム
+プログラムの説明	:ユニフォームの注文を管理するプログラム
+
+画面の概要:			注文一覧を表示する
 作成者：大久保嵩琉
-作成日：20240508
+作成日：20240621
  -->
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.ArrayList,bean.Order,bean.Item,dao.ItemDAO,java.time.LocalDate,
@@ -29,7 +28,7 @@ ItemDAO itemDAO = new ItemDAO();
 </header>
 <body>
 
-	<a href="tologout">ログアウト</a>
+	<a href="<%=request.getContextPath()%>/view/login.jsp">ログアウト</a>
 	<h1>受注管理システム</h1>
 	<hr>
 	<table align="right">
@@ -142,7 +141,7 @@ ItemDAO itemDAO = new ItemDAO();
 					<td style="text-align: center;">
 						<table style="width: 100%">
 							<td style="text-align: center;"><a
-								href="#">詳細</a></td>
+								href="<%=request.getContextPath()%>/orderDetail?orderid=<%=orderList.get(i).getOrderid()%>">詳細</a></td>
 						</table>
 					</td>
 				</tr>
