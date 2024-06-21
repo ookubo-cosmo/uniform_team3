@@ -44,7 +44,7 @@ public class ItemDAO {
 		try {
 
 			//検索用のSQL文
-			String sql = "SELECT itemid,price,stock FROM iteminfo WHERE itemid = '" + itemid + "'";
+			String sql = "SELECT * FROM iteminfo WHERE itemid = '" + itemid + "'";
 
 			//getConnection()メソッドを利用してConnectionオブジェクトを生成
 			con = ItemDAO.getConnection();
@@ -57,8 +57,10 @@ public class ItemDAO {
 			//結果セットから書籍データを取り出し、Bookオブジェクトに格納
 			if (rs.next()) {
 				item.setItemid(rs.getInt("itemid"));
+				item.setItemName(rs.getString("itemName"));
 				item.setPrice(rs.getInt("price"));
 				item.setStock(rs.getInt("stock"));
+				item.setImage(rs.getString("image"));
 			}
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
@@ -89,7 +91,7 @@ public class ItemDAO {
 
 		//結果を格納するオブジェクト
 		ArrayList<Item> list = new ArrayList<Item>();
-
+		
 		try {
 
 			//検索用SQL文
@@ -102,13 +104,16 @@ public class ItemDAO {
 
 			//executeQuary()メソッドを利用し、SQL文を発行し結果セットを取得
 			ResultSet rs = smt.executeQuery(sql);
+			
+			Item item = new Item();
 
 			//結果をlistに格納
 			while (rs.next()) {
-				Item item = new Item();
 				item.setItemid(rs.getInt("itemid"));
+				item.setItemName(rs.getString("itemName"));
 				item.setPrice(rs.getInt("price"));
 				item.setStock(rs.getInt("stock"));
+				item.setImage(rs.getString("image"));
 				list.add(item);
 			}
 
