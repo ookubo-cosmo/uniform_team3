@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/orderlist")
 public class OrderListServlet extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		//エラー内容を受け取るerror変数を宣言し初期化
