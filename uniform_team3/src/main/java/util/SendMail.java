@@ -1,4 +1,6 @@
 package util;
+import java.awt.print.Book;
+import java.net.PasswordAuthentication;
 /*
  * プログラム名：書籍管理プログラムWeb版 Ver2.0
  * プログラムの説明：	書籍情報、購入情報を管理するプログラム
@@ -11,13 +13,9 @@ import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
-import bean.Book;
 
 public class SendMail {
 

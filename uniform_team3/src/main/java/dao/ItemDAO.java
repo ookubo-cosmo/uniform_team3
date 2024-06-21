@@ -132,43 +132,4 @@ public class ItemDAO {
 
 	}
 
-	public void update(Item item) {
-
-		Connection con = null;
-		Statement smt = null;
-
-		try {
-
-			//SQL文
-			String sql = "UPDATE bookinfo SET price='" + item.getPrice() + "',stock=" + item.getStock()
-					+ " WHERE itemid='" + item.getItemid() + "'";
-
-			//getConnection()メソッドを利用してConnectionオブジェクトを生成
-			con = ItemDAO.getConnection();
-			//ConnectionオブジェクトのcreateStatement()メソッドを利用してStatementオブジェクトを生成
-			smt = con.createStatement();
-
-			//executeUpdate()メソッドを利用しSQL文を発行
-			smt.executeUpdate(sql);
-
-		} catch (Exception e) {
-			throw new IllegalStateException(e);
-		} finally {
-			//Statementオブジェクトをクローズ
-			if (smt != null) {
-				try {
-					smt.close();
-				} catch (SQLException ignore) {
-				}
-			}
-			//Connectionオブジェクトをクローズ
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException ignore) {
-				}
-			}
-		}
-	}
-
 }
