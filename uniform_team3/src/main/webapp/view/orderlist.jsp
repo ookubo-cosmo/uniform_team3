@@ -16,6 +16,9 @@
 ArrayList<Order> orderList = (ArrayList<Order>) request.getAttribute("orderlist");
 //ItemDAOをインスタンス化
 ItemDAO itemDAO = new ItemDAO();
+//Itemをインスタンス化
+Item item = new Item();
+
 %>
 
 <html>
@@ -27,8 +30,7 @@ ItemDAO itemDAO = new ItemDAO();
 	<% //@include file="../common/header.jsp"%>
 </header>
 <body>
-
-	<a href="<%=request.getContextPath()%>/view/login.jsp">ログアウト</a>
+	<a href="<%=request.getContextPath()%>/logout">ログアウト</a>　
 	<h1>受注管理システム</h1>
 	<hr>
 	<table align="right">
@@ -47,14 +49,19 @@ ItemDAO itemDAO = new ItemDAO();
 						LocalDate lastMonthenddate = lastMonth.with(TemporalAdjusters.lastDayOfMonth());
 						//受注一覧情報を全て
 						for(int i = 0 ; i < orderList.size();i++){
-							//受注日を取得し初期化
-							LocalDate orderDate = orderList.get(i).getOrder_date().toLocalDateTime().toLocalDate();
-							//受注日が今月の期間内であれば
-							if(!(lastMonthstartdate.isAfter(orderDate) || lastMonthenddate.isBefore(orderDate))){
-								//注文ごとの合計金額を取得し
-								Item item = itemDAO.selectByItemid(orderList.get(i).getItemid());
-								//今月の合計金額に加算
-								lsatMonthSales += item.getPrice()*orderList.get(i).getQuantity();
+							//入金済みのもので
+							if(orderList.get(i).getDeposit_status() == 2){
+								//受注日を取得し初期化
+								LocalDate orderDate = orderList.get(i).getOrder_date().toLocalDateTime().toLocalDate();
+								
+								
+								//受注日が今月の期間内であれば
+								if(!(lastMonthstartdate.isAfter(orderDate) || lastMonthenddate.isBefore(orderDate))){
+									//注文ごとの合計金額を取得し
+									item = itemDAO.selectByItemid(orderList.get(i).getItemid());
+									//先月の合計金額に加算
+									lsatMonthSales += item.getPrice()*orderList.get(i).getQuantity();
+								}
 							}
 						}
 						//今月の合計金額を表示
@@ -76,14 +83,17 @@ ItemDAO itemDAO = new ItemDAO();
 						LocalDate enddate = today.with(TemporalAdjusters.lastDayOfMonth());
 						//受注一覧情報を全て
 						for(int i = 0 ; i < orderList.size();i++){
-							//受注日を取得し初期化
-							LocalDate orderDate = orderList.get(i).getOrder_date().toLocalDateTime().toLocalDate();
-							//受注日が今月の期間内であれば
-							if(!(startdate.isAfter(orderDate) || enddate.isBefore(orderDate))){
-								//注文ごとの合計金額を取得し
-								Item item = itemDAO.selectByItemid(orderList.get(i).getItemid());
-								//今月の合計金額に加算
-								thisMonthSales += item.getPrice()*orderList.get(i).getQuantity();
+							//入金済みのもので
+							if(orderList.get(i).getDeposit_status()==2){
+								//受注日を取得し初期化
+								LocalDate orderDate = orderList.get(i).getOrder_date().toLocalDateTime().toLocalDate();
+								//受注日が今月の期間内であれば
+								if(!(startdate.isAfter(orderDate) || enddate.isBefore(orderDate))){
+									//注文ごとの合計金額を取得し
+									item = itemDAO.selectByItemid(orderList.get(i).getItemid());
+									//今月の合計金額に加算
+									thisMonthSales += item.getPrice()*orderList.get(i).getQuantity();
+								}
 							}
 						}
 						//今月の合計金額を表示
@@ -111,7 +121,7 @@ ItemDAO itemDAO = new ItemDAO();
 					<th>操作</th>
 				</tr>
 			</thead>
-			<!-- 書籍情報を全て表示 -->
+			<!-- 注文情報を全て表示 -->
 			<tbody>
 			
 				<%
@@ -121,14 +131,22 @@ ItemDAO itemDAO = new ItemDAO();
 				<tr>
 					<td style="text-align: center; width: 100"><%=orderList.get(i).getOrderid()%></td>
 					<td style="text-align: center; width: 100"><%=orderList.get(i).getName()%></td>
-					<td style="text-align: center; width: 100"><%=orderList.get(i).getItemid()%></td>
+					<td style="text-align: center; width: 100">
+						<%
+							//商品IDから商品一覧オブジェクトを取得
+							item = itemDAO.selectByItemid(orderList.get(i).getItemid());
+							//商品名を表示
+							out.println(item.getItemName());
+						%>
+					
+					</td>
 					<td style="text-align: center; width: 100"><%=orderList.get(i).getQuantity()%></td>
 					<td style="text-align: center; width: 100"><!-- 合計金額 -->
 						<!-- 商品IDから単価を取得して個数を掛ける -->
 						<% 
 						
 						//この行の商品IDからItemオブジェクトを取得
-						Item item = itemDAO.selectByItemid(orderList.get(i).getItemid());
+						item = itemDAO.selectByItemid(orderList.get(i).getItemid());
 						//この行の単価と個数を掛けた値を画面に表示
 						out.println(item.getPrice()*orderList.get(i).getQuantity());
 						%>
@@ -136,8 +154,26 @@ ItemDAO itemDAO = new ItemDAO();
 					
 					
 					<td style="text-align: center; width: 100"><%=orderList.get(i).getOrder_date()%></td>
-					<td style="text-align: center; width: 100"><%=orderList.get(i).getDeposit_status()%></td>
-					<td style="text-align: center; width: 100"><%=orderList.get(i).getShipment_status()%></td>
+					<td style="text-align: center; width: 100">
+						<%
+							if(orderList.get(i).getDeposit_status() == 1){
+								out.println("入金待ち");
+							}else{
+								out.println("入金済");
+							}
+						%>
+					</td>
+					<td style="text-align: center; width: 100">
+						<%
+							if(orderList.get(i).getShipment_status() == 1){
+								out.println("未");
+							}else if(orderList.get(i).getShipment_status() == 2){
+								out.println("発送準備中");
+							}else{
+								out.println("発送済");
+							}
+						%>
+					</td>
 					<td style="text-align: center;">
 						<table style="width: 100%">
 							<td style="text-align: center;"><a
