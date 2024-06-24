@@ -33,7 +33,7 @@ ItemDAO itemDAO = new ItemDAO();
 	<h1>商品一覧</h1>
 	<hr>
 	<h3>
-		<a href="toorderlist">注文画面へ</a>
+		<a href="<%=request.getContextPath()%>/view/order.jsp">注文画面へ</a>
 	</h3>
 	<table border="1" style="border-collapse: collapse">
 		</thead>
