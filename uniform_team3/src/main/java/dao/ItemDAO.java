@@ -105,10 +105,9 @@ public class ItemDAO {
 			//executeQuary()メソッドを利用し、SQL文を発行し結果セットを取得
 			ResultSet rs = smt.executeQuery(sql);
 			
-			Item item = new Item();
-
 			//結果をlistに格納
 			while (rs.next()) {
+				Item item = new Item();
 				item.setItemid(rs.getInt("itemid"));
 				item.setItemName(rs.getString("itemName"));
 				item.setPrice(rs.getInt("price"));

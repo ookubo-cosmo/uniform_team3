@@ -174,7 +174,6 @@ public class OrderDAO {
 				+ "shipment_status="	+ order.getShipment_status() 
 				+ ",deposit_status="	+ order.getDeposit_status()
 				+ " WHERE orderid="		+ order.getOrderid() +";";
-		System.out.println(sql);
 		try {
 			//getConnection()メソッドを利用してConnectionオブジェクトを生成
 			con = getConnection();

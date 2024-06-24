@@ -45,12 +45,13 @@ ItemDAO itemDAO = new ItemDAO();
 				<th>商品画像</th>
 			</tr>
 		</thead>
-					<!-- 書籍情報を全て表示 -->
+					<!-- 商品情報を全て表示 -->
 			<tbody>
 			
 				<%
 				if (itemList != null) {
 					for (int i = 0; i < itemList.size(); i++) {
+					
 				%>
 				<tr>
 					<td style="text-align: center; width: 100"><%=itemList.get(i).getItemid()%></td>
