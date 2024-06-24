@@ -15,7 +15,7 @@ Item item = itemDAO.selectByItemid(order.getItemid());
 <%@include file="/./common/header.jsp"%>
 <body>
 	<a href="<%=request.getContextPath()%>/orderlist">受注一覧へ</a>
-	<form action="<%=request.getContextPath()%>/orderlist" method=”post”>
+	<form action="<%=request.getContextPath()%>/orderdetail" method=”post”>
 		<table style="text-align: center; margin: auto;">
 			<tr>
 				<td>オーダーID</td>
@@ -51,13 +51,42 @@ Item item = itemDAO.selectByItemid(order.getItemid());
 			</tr>
 
 			<select name="deposit_status">
-				<option Value="1">未納</option>
-				<option Value="2">入金済み</option>
+				<option Value="1"
+				<%
+					if(order.getDeposit_status()==1){
+						out.print("selected");
+					}
+				%>>未納</option>
+				<option Value="2"
+				<%
+					if(order.getDeposit_status()==2){
+						out.print("selected");
+					}
+				%>>入金済み</option>
 			</select>
-			<select name="shipment_status">
-				<option Value="1">未</option>
-				<option Value="2">発送準備中</option>
-				<option Value="3">発送済み</option>
+			<select name="shipment_status" id="shipment_status">
+				<option Value="1"
+				<%
+					if(order.getShipment_status()==1){
+						out.print("selected");
+					}
+				%>
+				>未</option>
+				<option Value="2"
+					<%
+						if(order.getShipment_status()==2){
+							out.print("selected");
+						}
+					%>
+					>発送準備中
+				</option>
+				<option Value="3"
+				<%	
+					if(order.getShipment_status()==3){
+						out.print("selected");
+					}
+				%>
+				>発送済み</option>
 			</select>
 
 			<input type="submit" Value="更新">

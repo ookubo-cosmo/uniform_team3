@@ -5,7 +5,7 @@ package servlet;
  * プログラムの説明	:ユニフォームの注文を管理するプログラム
  * 						受注一覧を表示する機能
  * 作成者：大久保嵩琉
- * 作成日：20240620
+ * 作成日：20240624
  */
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,13 +20,15 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/orderlist")
 public class OrderListServlet extends HttpServlet {
+	
+	//エラー内容を受け取るerror変数を宣言し初期化
+			String error = "";
+			//エラー時の遷移先を指定するcmd変数を宣言し初期化
+			String cmd = "";
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//エラー内容を受け取るerror変数を宣言し初期化
-		String error = "";
-		//エラー時の遷移先を指定するcmd変数を宣言し初期化
-		String cmd = "";
 		//OrderDAOクラスをインスタンス化
 		OrderDAO orderObj = new OrderDAO();
 		//OrderListをインスタンス化
@@ -55,13 +57,10 @@ public class OrderListServlet extends HttpServlet {
 		}
 	}
 	
+	//受注詳細画面からの遷移
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		//エラー内容を受け取るerror変数を宣言し初期化
-		String error = "";
-		//エラー時の遷移先を指定するcmd変数を宣言し初期化
-		String cmd = "";
 		//OrderDAOクラスをインスタンス化
 		OrderDAO orderObj = new OrderDAO();
 		//OrderListをインスタンス化

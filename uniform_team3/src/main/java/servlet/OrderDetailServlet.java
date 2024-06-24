@@ -12,13 +12,15 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/orderDetail")
 public class OrderDetailServlet extends HttpServlet {
+	
+	String error = "";
+	String cmd = "";
+
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		String error = "";
-		String cmd = "";
-
+		
 		try {
 
 			request.setCharacterEncoding("UTF-8");
@@ -54,4 +56,13 @@ public class OrderDetailServlet extends HttpServlet {
 			}
 		}
 	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
+		//orderidを取得
+		System.out.println(request.getParameter("shipment_status"));
+	}
+	
 }

@@ -136,5 +136,35 @@ public class ItemDAO {
 		return list;
 
 	}
+	
+	public void update(Item item) {
+		Connection con = null;
+		Statement smt = null;
+		
+		//更新用SQL文
+		//DBの商品情報を変更する
+		String sql = "UPDATE iteminfo SET stock=" + item.getStock() 
+				+ "WHERE itemid=" + item.getItemid();
+		
+		try {
+			//getConnection()メソッドを利用してConnectionオブジェクトを生成
+			con = getConnection();
+			
+			//ConnectionオブジェクトのcreateStatement()メソッドを利用してStatementオブジェクトを生成
+			smt = con.createStatement();
+			
+			//executeUpdate()メソッドを利用し、SQL文を発行
+			smt.executeUpdate(sql);
+			
+		}catch(Exception e) {
+			throw new IllegalStateException(e);
+		}finally {
+			if(smt != null) {
+				try {smt.close();}catch(SQLException ignore) {}
+			}if(con != null) {
+				try {con.close();}catch(SQLException ignore) {}
+			}
+		}
+	}
 
 }
