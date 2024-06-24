@@ -21,6 +21,8 @@ public class OrderDetailServlet extends HttpServlet {
 
 		try {
 
+			request.setCharacterEncoding("UTF-8");
+			
 			//orderidを取得
 			int orderid = Integer.parseInt(request.getParameter("orderid"));
 

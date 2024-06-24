@@ -177,7 +177,7 @@ Item item = new Item();
 					<td style="text-align: center;">
 						<table style="width: 100%">
 							<td style="text-align: center;">
-							<a href="<%=request.getContextPath()%>/orderDetail">詳細</a></td>
+							<a href="<%=request.getContextPath()%>/orderDetail?orderid=<%=orderList.get(i).getOrderid()%>">詳細</a></td>
 						</table>
 					</td>
 				</tr>

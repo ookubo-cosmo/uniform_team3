@@ -1,5 +1,5 @@
-<%@page contenttype="text/html; charset=UTF-8"%>
-<%@page import="java.util.ArrayList,bean.Item,bean.Order"%>
+<%@page contentType="text/html; charset=UTF-8"%>
+<%@page import="java.util.ArrayList,bean.Item,bean.Order,dao.ItemDAO"%>
 <%
 Order order = (Order) request.getAttribute("order");
 ItemDAO itemDAO = new ItemDAO();
@@ -12,7 +12,7 @@ Item item = itemDAO.selectByItemid(order.getItemid());
 <link href="<%=request.getContextPath()%>/css/style.css"
 	rel="stylesheet" />
 </head>
-//<%@include file="/./common/header.jsp"%>
+<%@include file="/./common/header.jsp"%>
 <body>
 	<a href="<%=request.getContextPath()%>/orderlist">受注一覧へ</a>
 	<form action="<%=request.getContextPath()%>/orderlist" method=”post”>
