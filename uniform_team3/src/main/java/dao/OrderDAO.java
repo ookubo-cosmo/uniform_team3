@@ -44,7 +44,8 @@ public class OrderDAO {
 		
 		//更新用SQL文
 		//DBに注文情報を格納する
-		String sql = "INSERT INTO orderinfo VALUES(NULL,'"+ order.getName() + "','"+ order.getAddress() +"','"
+		String sql = "INSERT INTO orderinfo (name,address,email,itemid,quantity,order_date,note,shipment_status,deposit_status) "
+				+ "VALUES('"+ order.getName() + "','"+ order.getAddress() +"','"
 				+ order.getEmail() + "'," + order.getItemid() + "," + order.getQuantity() + ",CURDATE(),'" 
 				+ order.getNote() + "'," + order.getShipment_status() + ","  + order.getDeposit_status() + ");";
 		try {

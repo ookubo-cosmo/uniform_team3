@@ -17,7 +17,7 @@ public class PurchasedServlet extends HttpServlet {
 	String error = "";
 	String cmd = "";
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
 		try {

@@ -23,9 +23,9 @@
 		注文内容<br>
 		商品名：<%=item.getItemName() %><br>
 		個数：<%=order.getQuantity() %><br>
-		合計：<%=out.println(item.getPrice()*order.getQuantity()) %><br>
+		合計：<%=item.getPrice()*order.getQuantity() %><br>
 		<br>
-		<a href="/itemList">商品一覧に戻る</a>
+		<a href="<%=request.getContextPath()%>/itemlist">商品一覧に戻る</a>
 	</div>
 </body>
 </html>

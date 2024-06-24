@@ -143,8 +143,8 @@ public class ItemDAO {
 		//更新用SQL文
 		//DBの商品情報を変更する
 		String sql = "UPDATE iteminfo SET stock=" + item.getStock() 
-				+ "WHERE itemid=" + item.getItemid();
-		
+				+ " WHERE itemid=" + item.getItemid();
+		System.out.println(sql);
 		try {
 			//getConnection()メソッドを利用してConnectionオブジェクトを生成
 			con = getConnection();
