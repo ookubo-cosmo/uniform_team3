@@ -80,7 +80,7 @@ public class OrderDAO {
 		//検索用SQL文
 		//注文情報の受注ID、氏名、商品ID、注文量、注文日、入金情報、発送状況を取得する
 		String sql = "SELECT orderid,name,itemid,quantity,order_date,deposit_status,shipment_status"
-				+ " FROM orderinfo;" ;
+				+ " FROM orderinfo order by order_date desc;" ;
 		
 		try {
 			//getConnection()メソッドを利用してConnectionオブジェクトを生成
