@@ -1,0 +1,189 @@
+@charset "UTF-8";
+
+/*ユニフォーム予約管理のCSS */
+
+/* -------------------- common -------------------- */
+body {
+	font-family: sans-serif;
+	text-align: center; /* ページ全体を中央揃えにする */
+}
+.container {
+	width: 850px;
+	margin: 0 auto;
+}
+
+#nav {
+	position: absolute;
+	top: 23px;
+	width: 285px;
+}
+
+#nav li {
+	display: inline-block;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#menu {
+	position: relative;
+	border-bottom: 2px solid #0000ff;
+}
+
+
+header {
+	padding-top: 10px;
+	border-bottom: 5px solid #0000ff;
+	text-align: center;
+}
+
+footer {
+	position: absolute;
+	width: 100%;
+	height: 120px;
+	bottom: 0px;
+	border-top: 2px solid #0000ff;
+}
+
+#page_title {
+	text-align: center;
+}
+        
+.wrapper {
+	max-width: 1230px;
+	width: calc(100% - 10px);
+	margin: 0 auto;
+}	
+
+#wrap {
+	position: relative;
+	min-height: 100%;
+	height: 100%;
+	height: auto !important;
+	margin: auto;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0.6rem auto;
+}
+
+#main {
+	margin: 0 auto;
+	padding-top: 40px;
+	padding-bottom: 250px;
+	text-align: center;
+}
+
+input[type="submit"] {
+	 padding: 1px 6px;
+}
+
+table {
+	margin-left: auto;
+    margin-right: auto;
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+/* title */
+h1 {
+	text-transform: uppercase;
+	margin: 0.8rem auto;
+	font-size: 1.4rem;
+}
+
+.h1Border {
+	position: relative;
+}
+
+.h1Border::after {
+	content: "";
+	display:inline-block;
+	width: 100%;
+	height: 2px;
+	background-color: #000;
+	margin: 0 auto 50px;
+}
+
+
+
+/* -------------------- login --------------------- */
+.login {
+	margin-top: 49.6px;
+}
+/* -------------------- logo --------------------- */
+ .logo {
+            margin-left:right; /* ロゴを右端に配置する */
+        }
+.header {
+ display: flex;
+            justify-content: space-between; /* 要素間を両端に配置 */
+            align-items: center; /* 垂直方向に中央揃え */
+            background-color: #333; /* ヘッダーの背景色 */
+            color: white; /* ヘッダーのテキスト色 */
+            padding: 10px 20px; /* ヘッダーの内側のパディング */
+}
+.logout-link{
+	margin-left: 75%; /* ページ全体を中央揃えにする */
+}
+
+/* -------------------- itemlist --------------------- */
+
+
+
+/* -------------------- error --------------------- */
+
+
+/* -------------------- order --------------------- */
+
+.order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order form {
+    width: 100%;
+    max-width: 500px;
+}
+
+.order label,
+.order input,
+.order textarea,
+.order select,
+.order button {
+    margin-bottom: 15px; /* 各要素の間隔を設定 /
+    width: 100%; / フォーム要素の幅を100%に設定 /
+}
+
+.order label {
+    text-align: left; / ラベルを左揃えにする /
+    display: block; / ブロック要素にすることで幅を取る /
+    margin-bottom: 5px; / ラベルと入力フィールドの間隔を設定 */
+}
+
+.order input,
+.order textarea,
+.order select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.order button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.order button:hover {
+    background-color: #45a049;
+}

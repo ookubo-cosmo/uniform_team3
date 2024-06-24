@@ -10,10 +10,10 @@
 <%@page
 	import="java.util.ArrayList,bean.Item,bean.Item,dao.ItemDAO
 "%>
-
 <%
 //リクエストスコープからのデータの取得
 ArrayList<Item> itemList = (ArrayList<Item>) request.getAttribute("itemList");
+
 //ItemDAOをインスタンス化
 ItemDAO itemDAO = new ItemDAO();
 %>
