@@ -20,14 +20,53 @@ public class OrderDetailServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		
+		Order order = new Order();
 		try {
-
+			error = "";
+			cmd = "";
+			
 			request.setCharacterEncoding("UTF-8");
 			
 			//orderidを取得
 			int orderid = Integer.parseInt(request.getParameter("orderid"));
 
+			//OrderDAOをインスタンス化
+			OrderDAO orderDao = new OrderDAO();
+
+			//受注情報を検索し、戻り値としてOrderオブジェクトを取得
+			order = orderDao.selectByOrderid(orderid);
+
+			// 詳細情報のエラーチェック
+			if (order == null) {
+				error = "表示対象の注文が存在しない為、詳細情報は表示出来ませんでした。";
+				cmd = "toorderlist";
+			}
+
+			
+			
+		} catch (IllegalStateException e) {
+			error = "DB接続エラーの為、受注情報の詳細情報は表示出来ません。";
+			cmd = "toorderlist";
+		} finally {
+			if (!(error.equals(""))) {
+				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			} else {
+				//リクエストスコープにorderを格納
+				request.setAttribute("order", order);
+				request.getRequestDispatcher("/view/orderdetail.jsp").forward(request, response);
+			}
+		}
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		//orderidを取得
+		int orderid = Integer.parseInt(request.getParameter("orderid"));
+		
+		try {
 			//OrderDAOをインスタンス化
 			OrderDAO orderDao = new OrderDAO();
 
@@ -39,30 +78,16 @@ public class OrderDetailServlet extends HttpServlet {
 				error = "表示対象の注文が存在しない為、詳細情報は表示出来ませんでした。";
 				cmd = "toorderlist";
 			}
-
-			//リクエストスコープにorderを格納
-			request.setAttribute("order", order);
-			
-		} catch (IllegalStateException e) {
+			order.setShipment_status(Integer.parseInt(request.getParameter("shipment_status")));
+			order.setDeposit_status(Integer.parseInt(request.getParameter("deposit_status")));
+			orderDao.update(order);
+		}catch(IllegalStateException e) {
 			error = "DB接続エラーの為、受注情報の詳細情報は表示出来ません。";
 			cmd = "toorderlist";
 		} finally {
-			if (!(error.equals(""))) {
-				request.setAttribute("error", error);
-				request.setAttribute("cmd", cmd);
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
-			} else {
-				request.getRequestDispatcher("/view/orderdetail.jsp").forward(request, response);
-			}
+			
 		}
-	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
-		//orderidを取得
-		System.out.println(request.getParameter("shipment_status"));
+		request.getRequestDispatcher("/orderlist").forward(request,response);
 	}
 	
 }

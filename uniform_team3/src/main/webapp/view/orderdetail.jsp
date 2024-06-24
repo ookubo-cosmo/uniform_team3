@@ -15,7 +15,7 @@ Item item = itemDAO.selectByItemid(order.getItemid());
 <%@include file="/./common/header.jsp"%>
 <body>
 	<a href="<%=request.getContextPath()%>/orderlist">受注一覧へ</a>
-	<form action="<%=request.getContextPath()%>/orderdetail" method=”post”>
+	<form action="<%=request.getContextPath()%>/orderDetail" method="post">
 		<table style="text-align: center; margin: auto;">
 			<tr>
 				<td>オーダーID</td>
@@ -50,7 +50,7 @@ Item item = itemDAO.selectByItemid(order.getItemid());
 				<td><%=order.getNote()%></td>
 			</tr>
 
-			<select name="deposit_status">
+			<select name="deposit_status" id="deposit_status">
 				<option Value="1"
 				<%
 					if(order.getDeposit_status()==1){
@@ -88,7 +88,7 @@ Item item = itemDAO.selectByItemid(order.getItemid());
 				%>
 				>発送済み</option>
 			</select>
-
+			<input type="hidden" name="orderid" value="<%=order.getOrderid()%>">
 			<input type="submit" Value="更新">
 
 		</table>

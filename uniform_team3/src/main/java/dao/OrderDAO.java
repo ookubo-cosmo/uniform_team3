@@ -170,10 +170,11 @@ public class OrderDAO {
 		
 		//更新用SQL文
 		//DBの注文情報を変更する
-		String sql = "UPDATE orderinfo SET shipment_status=" + order.getShipment_status() 
-				+ ",deposit_status=" + order.getDeposit_status()
-				+ "WHERE orderid=" + order.getOrderid();
-		
+		String sql = "UPDATE orderinfo SET "
+				+ "shipment_status="	+ order.getShipment_status() 
+				+ ",deposit_status="	+ order.getDeposit_status()
+				+ " WHERE orderid="		+ order.getOrderid() +";";
+		System.out.println(sql);
 		try {
 			//getConnection()メソッドを利用してConnectionオブジェクトを生成
 			con = getConnection();
