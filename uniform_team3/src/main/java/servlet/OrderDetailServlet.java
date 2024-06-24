@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import util.SendMail;
 
 @WebServlet("/orderDetail")
 public class OrderDetailServlet extends HttpServlet {
@@ -81,6 +82,19 @@ public class OrderDetailServlet extends HttpServlet {
 			order.setShipment_status(Integer.parseInt(request.getParameter("shipment_status")));
 			order.setDeposit_status(Integer.parseInt(request.getParameter("deposit_status")));
 			orderDao.update(order);
+			
+			if(request.getParameter("deposit_status").equals("2")) {
+				int mail_status = 2;
+				SendMail objMail = new SendMail();
+				objMail.sendMail(order, mail_status);
+			}
+			
+			if(request.getParameter("shipment_status").equals("3")) {
+				int mail_status = 3;
+				SendMail objMail = new SendMail();
+				objMail.sendMail(order, mail_status);
+			}
+			
 		}catch(IllegalStateException e) {
 			error = "DB接続エラーの為、受注情報の詳細情報は表示出来ません。";
 			cmd = "toorderlist";
