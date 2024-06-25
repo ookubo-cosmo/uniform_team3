@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page
-	import="java.util.ArrayList,bean.Item,bean.Item,dao.ItemDAO
+<%@page import="java.util.ArrayList,bean.Item,bean.Item,dao.ItemDAO
 "%>
 	
 <!DOCTYPE html>
@@ -98,7 +97,12 @@ function updateValues(selectedValue){
 			</form>
 			<br><a href ="<%=request.getContextPath()%>/itemlist" style="margin-right:400px">商品一覧に戻る</a>
 		</main>
-			<%@ include file="/common/footer.jsp" %>
+		<footer style="position: static;">
+<div class="container">
+<h4>Copyright&copy; 2024 All Right Reserved.</h4>
+</div>
+</footer>
+
 	</div>
 	
 	
