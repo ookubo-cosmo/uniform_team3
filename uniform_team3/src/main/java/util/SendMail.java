@@ -133,7 +133,7 @@ public class SendMail {
 			}
 
 			// 送信元メールアドレスと送信者名を指定
-			mimeMessage.setFrom(new InternetAddress("test.sender@kanda-it-school-system.com", "神田IT School", "iso-2022-jp"));
+			mimeMessage.setFrom(new InternetAddress("system.project.team28@kanda-it-school-system.com", "神田ユニフォーム", "iso-2022-jp"));
 
 			// 送信先メールアドレスを指定（ご自分のメールアドレスに変更）
 			mimeMessage.setRecipients(Message.RecipientType.TO, order.getEmail());

@@ -38,14 +38,16 @@ function updateValues(selectedValue){
 </head>
 <body>
 
-	<div class="wrapper">
+	<div id="wrap">
 		<h1 style="text-align: center">注文画面</h1>
+		<%@include file="../common/header.jsp"%>
 		<%@include file="../common/logo.jsp"%>
-		<main class="order">
+		<main class="order" style="margin-left:400px;">
 			<div class="h1Border"></div>
 			<form action="${pageContext.request.contextPath}/order" method="post">
 				<div>
-					<label for="email">メールアドレス:</label> <input type="email" id="email"
+					<label for="email">メールアドレス:</label><br>
+					<input type="email" id="email"
 						name="email"
 						pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
 						required><br>
@@ -63,7 +65,7 @@ function updateValues(selectedValue){
 				</div>
 
 				<div>
-					<label for="itemid">商品の種類</label> 
+					<label for="itemid">商品の種類</label><br>
 					<select id="itemid" name="itemid" onchange="updateValues(this.value)" required><br>
 						<%-- 商品一覧を動的に生成する --%>
 						<option value="">選択してください</option>
@@ -74,7 +76,7 @@ function updateValues(selectedValue){
 						</option>
 						<% } %>
 					</select>
-					<spen id="stock"></spen>
+					
 				</div>
 				<div>
 					<label for="quantity">購入個数</label><br> <input type="number"
@@ -82,7 +84,7 @@ function updateValues(selectedValue){
 				</div>
 				<div>
 					<label>在庫個数</label><br>
-					<p id="stock"></p><br>
+					<spen id="stock"></spen><br><br>
 				</div>
 
 				<div>
@@ -94,8 +96,11 @@ function updateValues(selectedValue){
 				<button type="submit">購入確定</button>
 				
 			</form>
-			<br> <a href ="<%=request.getContextPath()%>/itemlist">商品一覧に戻る</a>
+			<br><a href ="<%=request.getContextPath()%>/itemlist" style="margin-right:400px">商品一覧に戻る</a>
 		</main>
+			<%@ include file="/common/footer.jsp" %>
 	</div>
+	
+	
 </body>
 </html>

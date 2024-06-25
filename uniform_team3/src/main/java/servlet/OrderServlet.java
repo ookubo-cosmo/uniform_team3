@@ -34,6 +34,12 @@ public class OrderServlet extends HttpServlet {
 			String itemid = request.getParameter("itemid");
 			String quantity = request.getParameter("quantity");
 			String note = request.getParameter("note");
+			
+			//注文量＞在庫数ならば
+			if(Integer.parseInt(quantity)>itemDao.selectByItemid(Integer.parseInt(itemid)).getStock()) {
+				error = "在庫数を超えています。";
+				return;
+			}
 
 			//orderオブジェクトに格納
 			order.setName(name);
