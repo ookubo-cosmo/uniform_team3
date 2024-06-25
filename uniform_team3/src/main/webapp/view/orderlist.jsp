@@ -24,6 +24,7 @@ Item item = new Item();
 <html>
 <head>
 <title>受注一覧</title>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/view/css/style.css">
 </head>
 
 <header>

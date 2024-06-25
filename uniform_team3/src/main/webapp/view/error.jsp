@@ -20,7 +20,7 @@ String pagetest;
 <html>
 <head>
 <title>Error</title>
-<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/view/css/style.css">
 </head>
 <header>
 	<%@include file="../common/header.jsp"%>
@@ -61,7 +61,4 @@ String pagetest;
 		</table>
 	</div>
 </body>
-<footer>
-	<% //include file="../common/footer.jsp"%>
-</footer>
 </html>

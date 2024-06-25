@@ -9,8 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>注文画面</title>
-<link rel="stylesheet"
-	href="<%= request.getContextPath() %>/view/css/style.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/view/css/style.css">
 <%
 //商品DAOをインスタンス化
 ItemDAO itemDao = new ItemDAO();
@@ -93,6 +92,7 @@ function updateValues(selectedValue){
 				</div>
 
 				<button type="submit">購入確定</button>
+				
 			</form>
 			<br> <a href ="<%=request.getContextPath()%>/itemlist">商品一覧に戻る</a>
 		</main>

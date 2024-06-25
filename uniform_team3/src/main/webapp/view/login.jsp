@@ -27,7 +27,7 @@
 <html>
 	<head>
 		<title>管理者ログイン画面</title>
-		<link rel="stylesheet"  href="<%=request.getContextPath()%>/css/style.css">
+		<link rel="stylesheet" href="<%= request.getContextPath() %>/view/css/style.css">
 	</head>
 	<body>
 	<div id="wrap">

@@ -21,12 +21,11 @@ ItemDAO itemDAO = new ItemDAO();
 <html>
 <head>
 <title>商品一覧</title>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/view/css/style.css">
 </head>
 
 <header>
-	<%
-	//@include file="../common/header.jsp"
-	%>
+	<%@include file="../common/header.jsp"%>
 </header>
 <body>
 	<a href="<%=request.getContextPath()%>/view/login.jsp">管理者ログイン</a>

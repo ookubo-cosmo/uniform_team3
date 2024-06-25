@@ -17,8 +17,8 @@ public class PurchasedServlet extends HttpServlet {
 	String error = "";
 	String cmd = "";
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		
 		try {
 			
@@ -29,7 +29,7 @@ public class PurchasedServlet extends HttpServlet {
 			ItemDAO objItem = new ItemDAO();
 
 			//関連メソッド呼び出し
-			Item item = objItem.selectByItemid(order.getOrderid());
+			Item item = objItem.selectByItemid(order.getItemid());
 
 			//リクエストスコープに格納
 			request.setAttribute("item", item);

@@ -9,8 +9,7 @@ Item item = itemDAO.selectByItemid(order.getItemid());
 <html>
 <head>
 <title>受注情報詳細</title>
-<link href="<%=request.getContextPath()%>/css/style.css"
-	rel="stylesheet" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/view/css/style.css">
 </head>
 <%@include file="/./common/header.jsp"%>
 <body>
