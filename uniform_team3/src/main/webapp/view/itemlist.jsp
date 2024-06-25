@@ -10,10 +10,10 @@
 <%@page
 	import="java.util.ArrayList,bean.Item,bean.Item,dao.ItemDAO
 "%>
+
 <%
 //リクエストスコープからのデータの取得
 ArrayList<Item> itemList = (ArrayList<Item>) request.getAttribute("itemList");
-
 //ItemDAOをインスタンス化
 ItemDAO itemDAO = new ItemDAO();
 %>
@@ -21,21 +21,30 @@ ItemDAO itemDAO = new ItemDAO();
 <html>
 <head>
 <title>商品一覧</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/view/css/style.css">
+<link rel="stylesheet"  href="<%=request.getContextPath()%>/css/style.css">
 </head>
 
-<header>
-	<%@include file="../common/header.jsp"%>
-</header>
+<%@ include file="/common/header.jsp" %>
+
 <body>
-	<a href="<%=request.getContextPath()%>/view/login.jsp">管理者ログイン</a>
-	<h1>商品一覧</h1>
-	<hr>
+<div id="menu">
+				<div class="container">
+					<div id="nav">
+							<a href="<%=request.getContextPath()%>/view/login.jsp">管理者ログイン</a>
+					</div>
+					<%@include file="../common/logo.jsp"%>
+					<div id="page_title">
+						<h2>商品一覧</h2>
+					</div>
+					
+				</div>
+			</div>
+	<div id="main" class="container">
 	<h3>
-		<a href="<%=request.getContextPath()%>/view/order.jsp">注文画面へ</a>
+		<a href="<%=request.getContextPath()%>/view/order.jsp" align="center">注文画面へ</a>
 	</h3>
-	<table border="1" style="border-collapse: collapse">
-		</thead>
+	<table class="list-table">
+		<thead>
 			<tr>
 				<th>商品NO</th>
 				<th>商品名</th>
@@ -44,20 +53,19 @@ ItemDAO itemDAO = new ItemDAO();
 				<th>商品画像</th>
 			</tr>
 		</thead>
-					<!-- 商品情報を全て表示 -->
+					<!-- 書籍情報を全て表示 -->
 			<tbody>
 			
 				<%
 				if (itemList != null) {
 					for (int i = 0; i < itemList.size(); i++) {
-					
 				%>
 				<tr>
 					<td style="text-align: center; width: 100"><%=itemList.get(i).getItemid()%></td>
 					<td style="text-align: center; width: 100"><%=itemList.get(i).getItemName()%></td>
 					<td style="text-align: center; width: 100"><%=itemList.get(i).getStock()%></td>
 					<td style="text-align: center; width: 100"><%=itemList.get(i).getPrice()%></td>
-					<td style="text-align: center; width: 100"><%=itemList.get(i).getImage()%></td>
+					<td><img src="<%=request.getContextPath()%>/file/<%=itemList.get(i).getImage()%>"></td>
 				</tr>
 				<%
 					}
@@ -65,5 +73,6 @@ ItemDAO itemDAO = new ItemDAO();
 				%>
 			</tbody>
 	</table>
+	</div>
 </body>
 </html>

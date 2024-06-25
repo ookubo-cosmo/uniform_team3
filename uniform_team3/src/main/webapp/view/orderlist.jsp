@@ -8,7 +8,7 @@
  -->
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.ArrayList,bean.Order,bean.Item,dao.ItemDAO,java.time.LocalDate,
-				java.time.temporal.TemporalAdjusters,java.time.LocalDateTime
+				java.time.temporal.TemporalAdjusters,java.time.LocalDateTime,java.text.SimpleDateFormat
 "%>
 
 <%
@@ -154,7 +154,13 @@ Item item = new Item();
 					</td>
 					
 					
-					<td style="text-align: center; width: 100"><%=orderList.get(i).getOrder_date()%></td>
+					<td style="text-align: center; width: 100">
+						<%
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+						out.print(sdf.format(orderList.get(i).getOrder_date()));
+							
+						%>
+					</td>
 					<td style="text-align: center; width: 100">
 						<%
 							if(orderList.get(i).getDeposit_status() == 1){
