@@ -10,7 +10,7 @@ Item item = itemDAO.selectByItemid(order.getItemid());
 <head>
 <title>受注情報詳細</title>
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/style.css">
+	href="<%=request.getContextPath()%>/view/css/style.css">
 </head>
 
 <body>
